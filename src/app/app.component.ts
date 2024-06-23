@@ -12,6 +12,7 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
+  tips: number[] = [5, 10, 15, 25, 50];
   tipAmount: WritableSignal<number> = signal(0);
   total: WritableSignal<number> = signal(0);
   isResetDisabled: WritableSignal<boolean> = signal(true);
