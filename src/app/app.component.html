@@ -17,36 +17,14 @@
         <div>
           <label>Select Tip %</label>
           <div class="mt-1 grid grid-cols-2 gap-3 md:grid-cols-3 grid-rows-1">
-            <div class="tip-percent-radio">
-              <input type="radio" name="tip" id="5-percent"
-                     (change)="calculate(5)"
-                     [checked]="tipPercent == 5">
-              <label for="5-percent">5%</label>
-            </div>
-            <div class="tip-percent-radio">
-              <input type="radio" name="tip" id="10-percent"
-                     (change)="calculate(10)"
-                     [checked]="tipPercent == 10">
-              <label for="10-percent">10%</label>
-            </div>
-            <div class="tip-percent-radio">
-              <input type="radio" name="tip" id="15-percent"
-                     (change)="calculate(15)"
-                     [checked]="tipPercent == 15">
-              <label for="15-percent">15%</label>
-            </div>
-            <div class="tip-percent-radio">
-              <input type="radio" name="tip" id="25-percent"
-                     (change)="calculate(25)"
-                     [checked]="tipPercent == 25">
-              <label for="25-percent">25%</label>
-            </div>
-            <div class="tip-percent-radio">
-              <input type="radio" name="tip" id="50-percent"
-                     (change)="calculate(50)"
-                     [checked]="tipPercent == 50">
-              <label for="50-percent">50%</label>
-            </div>
+            @for (tip of tips; track tip) {
+              <div class="tip-percent-radio">
+                <input type="radio" name="tip" [id]="tip + '-percent'"
+                       (change)="calculate(tip)"
+                       [checked]="tipPercent == tip">
+                <label [for]="tip + '-percent'">{{ tip }}%</label>
+              </div>
+            }
             <input #tip id="custom" name="custom" type="number"
                    placeholder="Custom"
                    class="mt-1 form-input text-2xl text-right text-veryDarkCyan
@@ -58,9 +36,9 @@
         </div>
 
         <div>
-          <div class="flex justify-between flex-col md:flex-row">
-            <label>Number of People</label>
-            <span class="invisible md:inline-block text-red-500 font-bold"
+          <div class="flex justify-between flex-col sm:flex-row">
+            <label class="block">Number of People</label>
+            <span class="invisible inline-block text-red-500 font-bold"
                   [ngClass]="{show: noPersons}">
               Can't be zero
             </span>
