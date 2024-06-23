@@ -1,0 +1,108 @@
+<main class="min-h-screen w-full flex justify-center items-center flex-col">
+  <img class="mt-20 md:mt-0" src="./assets/images/logo.svg" alt="logo">
+
+  <div
+    class="mt-20 bg-white max-w-[925px] shadow-xl px-6 py-7 md:p-8
+    rounded-b-none rounded-t-3xl md:rounded-3xl">
+    <form class="flex flex-col md:flex-row gap-8 min-h-full">
+
+      <div class="md:w-6/12 min-h-full p-4 space-y-10">
+        <div>
+          <label class="" for="bill">Bill</label>
+          <input id="bill" name="bill" type="number" placeholder="0"
+                 class="mt-1 form-input text-right text-veryDarkCyan"
+                 [(ngModel)]="bill" (keyup)="calculate(tipPercent)">
+        </div>
+
+        <div>
+          <label>Select Tip %</label>
+          <div class="mt-1 grid grid-cols-2 gap-3 md:grid-cols-3 grid-rows-1">
+            <div class="tip-percent-radio">
+              <input type="radio" name="tip" id="5-percent"
+                     (change)="calculate(5)"
+                     [checked]="tipPercent == 5">
+              <label for="5-percent">5%</label>
+            </div>
+            <div class="tip-percent-radio">
+              <input type="radio" name="tip" id="10-percent"
+                     (change)="calculate(10)"
+                     [checked]="tipPercent == 10">
+              <label for="10-percent">10%</label>
+            </div>
+            <div class="tip-percent-radio">
+              <input type="radio" name="tip" id="15-percent"
+                     (change)="calculate(15)"
+                     [checked]="tipPercent == 15">
+              <label for="15-percent">15%</label>
+            </div>
+            <div class="tip-percent-radio">
+              <input type="radio" name="tip" id="25-percent"
+                     (change)="calculate(25)"
+                     [checked]="tipPercent == 25">
+              <label for="25-percent">25%</label>
+            </div>
+            <div class="tip-percent-radio">
+              <input type="radio" name="tip" id="50-percent"
+                     (change)="calculate(50)"
+                     [checked]="tipPercent == 50">
+              <label for="50-percent">50%</label>
+            </div>
+            <input #tip id="custom" name="custom" type="number"
+                   placeholder="Custom"
+                   class="mt-1 form-input text-2xl text-right text-veryDarkCyan
+                    placeholder-darkGrayishCyan"
+                   (keyup)="calculate(Number(tip.value))"
+                   (focus)="calculate(Number(tip.value))"
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between">
+            <label>Number of People</label>
+            <span class="invisible inline-block text-red-500 font-bold"
+                  [ngClass]="{show: noPersons}">
+              Can't be zero
+            </span>
+          </div>
+          <input id="persons" name="persons" type="number" placeholder="0"
+                 class="peer-invalid:border peer-invalid:border-red-500 mt-1
+                 form-input text-right text-veryDarkCyan"
+                 [(ngModel)]="persons" (keyup)="calculate(tipPercent)"
+                 [ngClass]="{'invalid-input': noPersons}"
+          >
+        </div>
+      </div>
+
+      <div class="min-h-full flex flex-col gap-10 bg-veryDarkCyan
+        rounded-xl px-6 pt-10 pb-5 md:px-10 md:pt-14 md:pb-9 md:w-6/12">
+        <div class="flex justify-between">
+          <div>
+            <p class="text-lightGrayishCyan2 font-bold">Tip Amount</p>
+            <p class="text-darkGrayishCyan2 text-sm font-bold"> / person</p>
+          </div>
+          <p
+            class="self-center text-3xl md:text-5xl font-semibold text-strongCyan">
+            ${{ tipAmount() == 0 ? '0.00' : tipAmount() }}
+          </p>
+        </div>
+        <div class="flex justify-between">
+          <div>
+            <p class="text-lightGrayishCyan2 font-bold">Total</p>
+            <p class="text-darkGrayishCyan2 text-sm font-bold">/ person</p>
+          </div>
+          <p class="self-center text-3xl md:text-5xl font-bold text-strongCyan">
+            ${{ total() == 0 ? '0.00' : total() }}
+          </p>
+        </div>
+        <button type="reset" class="w-full bg-strongCyan
+           transition-all rounded text-veryDarkCyan text-xl uppercase font-bold
+           hover:bg-lightGrayishCyan py-2.5 mt-auto" (click)="reset()"
+                [ngClass]="{disabled: isResetDisabled()}">Reset
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</main>

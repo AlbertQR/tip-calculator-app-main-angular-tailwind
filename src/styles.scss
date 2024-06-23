@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-lightGrayishCyan;
+  }
+
+  label {
+    @apply text-darkGrayishCyan font-bold;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply text-[24px] appearance-none bg-lightGrayishCyan2 w-full outline-none
+      border-[3px] border-transparent py-0.5 md:py-1 px-3 rounded font-bold
+      focus:border-strongCyan hover:border-strongCyan cursor-pointer;
+  }
+
+  .tip-percent-radio {
+    label {
+      @apply w-full bg-veryDarkCyan inline-block rounded text-center py-1.5
+        text-2xl text-lightGrayishCyan2 cursor-pointer hover:text-veryDarkCyan
+        hover:bg-lightGrayishCyan transition-all;
+    }
+
+    input[type=radio] {
+      @apply hidden;
+      &:checked + label {
+        @apply bg-strongCyan;
+      }
+    }
+  }
+}

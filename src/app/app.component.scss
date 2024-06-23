@@ -1,0 +1,35 @@
+#bill {
+  background-image: url("../assets/images/icon-dollar.svg");
+  background-repeat: no-repeat;
+  background-position: .75rem center;
+}
+
+#persons {
+  background-image: url("../assets/images/icon-person.svg");
+  background-repeat: no-repeat;
+  background-position: .75rem center;
+}
+
+.show {
+  visibility: visible !important;
+}
+
+.invalid-input {
+  border: rgb(239 68 68) 3px solid !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+.disabled {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
